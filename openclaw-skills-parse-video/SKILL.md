@@ -12,14 +12,14 @@ featured: false
 
 ## 工作流程
 
-1. **解析链接** - 调用本地 HTTP 接口 `http://127.0.0.1:8080/video/share/url/parse?url=...`
+1. **解析链接** - 调用本地 HTTP 接口 `http://127.0.0.1:18080/video/share/url/parse?url=...`
 2. **下载资源** - 如需保存到本地，再执行 `scripts/download.py`
 
 ## 接口要求
 
 默认依赖本机运行中的 `parse-video` 服务：
 
-- HTTP API: `http://127.0.0.1:8080`
+- HTTP API: `http://127.0.0.1:18080`
 - 解析接口: `GET /video/share/url/parse?url=<分享链接或整段分享文案>`
 
 如果服务未启动，先启动本地 `parse-video` 容器或进程。
@@ -38,7 +38,7 @@ featured: false
 ### 直接调用 HTTP 接口
 
 ```bash
-curl -sS 'http://127.0.0.1:8080/video/share/url/parse?url=https://v.douyin.com/xxxx/'
+curl -sS 'http://127.0.0.1:18080/video/share/url/parse?url=https://v.douyin.com/xxxx/'
 ```
 
 如果用户给的是整段分享文案，也可以直接 URL encode 后传入。
@@ -83,7 +83,7 @@ curl -sS 'http://127.0.0.1:8080/video/share/url/parse?url=https://v.douyin.com/x
 python3 - <<'PY'
 import urllib.parse, subprocess
 text = '0.76 04/18 Y@z.gB Vlp:/ 几秒钟的世界 https://v.douyin.com/dEufUwHOAdg/ 复制此链接，打开Dou音搜索，直接观看视频！'
-url = 'http://127.0.0.1:8080/video/share/url/parse?url=' + urllib.parse.quote(text, safe='')
+url = 'http://127.0.0.1:18080/video/share/url/parse?url=' + urllib.parse.quote(text, safe='')
 subprocess.run(['curl', '-sS', url])
 PY
 ```
@@ -91,7 +91,7 @@ PY
 ### 示例 2：解析 B 站链接
 
 ```bash
-curl -sS 'http://127.0.0.1:8080/video/share/url/parse?url=https://www.bilibili.com/video/BV1xx411c7mD'
+curl -sS 'http://127.0.0.1:18080/video/share/url/parse?url=https://www.bilibili.com/video/BV1xx411c7mD'
 ```
 
 ### 示例 3：下载解析出的资源
